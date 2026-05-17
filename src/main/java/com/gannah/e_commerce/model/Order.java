@@ -1,5 +1,6 @@
 package com.gannah.e_commerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,9 +41,11 @@ public class Order {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
 }

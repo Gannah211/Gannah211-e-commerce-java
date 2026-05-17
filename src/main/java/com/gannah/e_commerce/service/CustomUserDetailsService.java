@@ -1,4 +1,4 @@
-package com.gannah.e_commerce.security;
+package com.gannah.e_commerce.service;
 
 import com.gannah.e_commerce.model.User;
 import com.gannah.e_commerce.repository.UserRepository;
