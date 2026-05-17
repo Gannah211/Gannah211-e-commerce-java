@@ -24,18 +24,7 @@ public class CartController {
         return  ResponseEntity.ok(cartService.getCart(getCurrentUserEmail()));
     }
     @PostMapping("/items")
-    public ResponseEntity<?> addItem(@Valid @RequestBody CartItemRequest request){
-        System.out.println("REQUEST RECEIVED: " + request);
-
-        if (request == null) {
-            return ResponseEntity.badRequest().body("Request body is null");
-        }
-        if (request.getProductId() == null) {
-            return ResponseEntity.badRequest().body("ProductId is null");
-        }
-        if (request.getQuantity() == null) {
-            return ResponseEntity.badRequest().body("Quantity is null");
-        }
+    public ResponseEntity<CartResponse> addItem(@Valid @RequestBody CartItemRequest request){
         return ResponseEntity.ok(cartService.addItem(getCurrentUserEmail(), request));
     }
 

@@ -35,15 +35,10 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 
         String token = authHeader.substring(7);
-        System.out.println("TOKEN: " + token);
-        System.out.println("IS VALID: " + jwtUtil.isTokenValid(token));
-//        String authHeader = request.getHeader("Authorization");
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
-
-//        String token = authHeader.substring(7);
 
         if(jwtUtil.isTokenValid(token)){
             String email = jwtUtil.extractEmail(token);
