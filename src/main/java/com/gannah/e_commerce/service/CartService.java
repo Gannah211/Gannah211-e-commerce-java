@@ -112,7 +112,13 @@ public class CartService {
     }
 
     private CartResponse mapToResponse(Cart cart){
-        List<CartItemResponse> items = cart.getCartItems() == null ? List.of() : cart.getCartItems().stream().map(this::mapItemToResponse).collect(Collectors.toList());
+        List<CartItem> cartItems =
+                cartItemRepository.findAllByCartId(cart.getId());
+
+        List<CartItemResponse> items =
+                cartItems.stream()
+                        .map(this::mapItemToResponse)
+                        .collect(Collectors.toList());
 
         BigDecimal totalPrice = items.stream()
                 .map(CartItemResponse::getSubtotal)
